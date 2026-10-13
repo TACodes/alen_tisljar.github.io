@@ -101,14 +101,14 @@ let resumeButton = document.getElementById('resume-button')
 let opt = {
     margin:      0,
     filename:    'Alen_Tisljar_CV.pdf',
-    image:       {type: 'png', quality: 0.98},
-    html2canvas: {scale: 4},
-    jsPDF:       {format: 'a4', orientation: 'portrait'}
+    image:       {type: 'jpeg', quality: 0.95},
+    html2canvas: {scale: 2, useCORS: true},
+    jsPDF:       {format: 'a4', orientation: 'portrait', compress: true}
 }
 
-// Function to call areaCv and Html2Pdf options 
+// Function to call areaCv and Html2Pdf options
 function generateResume() {
-	html2pdf().from(areaCv).set(opt).save();
+	return html2pdf().from(areaCv).set(opt).save();
     // html2pdf(areaCv, opt)
 }
 
@@ -118,8 +118,6 @@ resumeButton.addEventListener('click', () => {
     scaleCV()
 
     // 2. The PDF is generated
-    generateResume()
-
-    // 3. The .scale-cv class is removed from the body after 5 seconds to return to normal size.
-    setTimeout(removeScale, 5000)
+    // 3. The .scale-cv class is removed from the body when the PDF is saved to return to normal size.
+    generateResume().then(removeScale)
 })
