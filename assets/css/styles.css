@@ -104,6 +104,11 @@ body.scale-cv{
   max-width: 595px;
 }
 
+/* Fill the whole A4 page (794px wide in html2pdf) so no empty strip is left at the bottom */
+.scale-cv .resume{
+  min-height: 1121px;
+}
+
 .scale-cv .section{
   padding: .85rem 0 .85rem;
 }
@@ -174,6 +179,11 @@ body.scale-cv{
 .scale-cv .education__data,
 .scale-cv .experience__data{
   gap: .25rem;
+}
+
+.scale-cv .experience__description,
+.scale-cv .certificate__description{
+  line-height: 1.35;
 }
 
 .scale-cv .skills__name{
